@@ -10,33 +10,38 @@
 <html>
 <head>
     <title>分数上传</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <%
     String score = request.getParameter("H");
 %>
-<table style="margin: 0 auto">
-    <form action="operate.jsp" method="post">
-        <tr>
-            <td><input type="hidden" name="score" value="<%=score%>"></td>
-        </tr>
-        <tr>
-            <td>用户名:</td>
-            <td><input type="text" name="user"></td>
-        </tr>
-        <tr>
-            <td>分数:</td>
-            <td><input type="text" value="<%=score%>" disabled></td>
-        </tr>
-        <td>
-        <td><input type="submit" name="submit1" value="确认上传"></td>
-        </tr>
-        <tr>
-            <td><a href="index.jsp"> 返 回 游 戏</a></td>
-        </tr>
+<div style="text-align: center">
+    <form action="operate.jsp" method="post" name="form" onsubmit="return yanzheng()">
+        <input type="hidden" name="score" value="<%=score%>">
+        <fieldset>
+            <legend style="text-align: center;" >上传分数</legend>
+            <label>昵称:</label>
+            <input type="text" placeholder="尊姓大名" name="user" style="width: 300px; height: 35px;">
+            <label>分数:</label>
+            <input type="text" placeholder="" value="<%=score%>" disabled style="width: 300px; height: 35px;">
+            <span class="help-block">成绩不可修改</span>
+            <button type="submit" class="btn" style="width: 80px; height: 35px;">上传</button>
+        </fieldset>
     </form>
-</table>
-
+    <a href="index.jsp" class="help-block"> 返 回 游 戏</a>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+    function yanzheng() {
+        var x = document.forms["form"]["user"].value;
+        if (x == null || x == "") {
+            alert("昵称不能为空！");
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

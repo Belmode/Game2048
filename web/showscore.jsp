@@ -10,9 +10,10 @@
 <html>
 <head>
     <title>分数上传</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<a href="index.jsp">返回游戏</a>
+<a href="index.jsp" class="label label-info">返回游戏</a>
 <%
     String uri = "jdbc:mysql://localhost:3306/mywork";
     String user = "root";
@@ -25,16 +26,16 @@
 
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection(uri, user, password);
-        pre = con.prepareStatement("SELECT * FROM score ORDER BY grade");//查询表中总分
+        pre = con.prepareStatement("SELECT * FROM score ORDER BY grade DESC ");//查询表中总分
         rs = pre.executeQuery();
-        out.print("<table style=\"margin:0 auto;\">");
+        out.print("<table class='table table-bordered table-hover table-condensed'>");
         int i = 1;
-        out.print("<tr><td>排名</td><td>昵称</td><td>分数</td></tr>");
+        out.print("<tr class='waring'><th  style='text-align: center;' >排 名</th><th  style='text-align: center;'>昵 称</th><th  style='text-align: center;'>分 数</th></tr>");
         while (rs.next()) {
-            out.print("<tr>");
-            out.print("<td>"+i++ +"<td>");
-            out.print("<td>"+rs.getString(2)+"</td>");
-            out.print("<td>"+rs.getString(3)+"</td>");
+            out.print("<tr class='success'>");
+            out.print("<td  style='text-align: center;'>" + i++ + "</td>");
+            out.print("<td  style='text-align: center;'>" + rs.getString(2) + "</td>");
+            out.print("<td  style='text-align: center;'>" + rs.getString(3) + "</td>");
             out.print("</tr>");
         }
         out.print("</table>");
@@ -48,6 +49,17 @@
         out.print(e);
     }
 %>
+
+<nav aria-label="...">
+    <ul class="pager ">
+        <li><a href="#">上一页</a></li>
+        <li><a href="#">下一页</a></li>
+    </ul>
+</nav>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
 </body>
 </html>
 

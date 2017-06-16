@@ -64,7 +64,7 @@ function updateBoardView() {//刷新前端视图
         }
     }
     document.getElementById("score").innerText = score;
-    document.getElementById("step").innerText = step;
+    document.getElementById("step").innerText = step++;
 }
 
 function generateOneNumber() {
@@ -92,10 +92,12 @@ function generateOneNumber() {
 
 //事件响应循环
 $(document).keydown(function (event) {
+    step++;
     switch (event.keyCode) {
         case 37://left
             if (moveLeft()) {
                 setTimeout("generateOneNumber()", 220);
+
             }
             break;
         case 38://up

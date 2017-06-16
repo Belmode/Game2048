@@ -25,7 +25,7 @@
     %>
     <up:UpLoad name="<%=name%>" score="<%=score%>"/>
     <%
-        
+
     %>
 </body>
 </html>
